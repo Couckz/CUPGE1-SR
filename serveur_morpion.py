@@ -102,6 +102,7 @@ def check_victoire(grille, symbole, ligne, colonne):
         _Bool_: _Si la fonction renvoie True, cela indique que le joueur courant remporte la partie, si ce n'est pas le cas, la fonction renvoie "False"_
         _integer_: _Dans le cas où la grille est pleine, la fonction renvoie le nombre "16" pour indiquer qu'il n'y a plus aucune case libre dans la grille_
     """
+          
     counter = 0
     for tab in grille:
         if "." not in tab:
@@ -113,274 +114,35 @@ def check_victoire(grille, symbole, ligne, colonne):
     ligne = int(ligne)
     
     #Condition de victoire pour un symbole dans une ligne
-    if colonne == 15 or colonne == 5:
-        if grille[ligne][colonne] == symbole:
-            if grille[ligne][colonne-1] == symbole:
-                if grille[ligne][colonne-2] == symbole:
-                    if grille[ligne][colonne-3] == symbole:
-                        if grille[ligne][colonne-4] == symbole:
-                            return True
+    compteur = 0
+    for j in range(1,15):
+        if grille[ligne][j] == symbole:
+            compteur+=1
+
+    if compteur == 5:
+        return True 
+    #Condition cherchant une potentielle victoire pour un symbole dans une colonne
     
-    elif colonne == 14 or colonne == 4:
-        if grille[ligne][colonne] == symbole:
-            if grille[ligne][colonne+1] == symbole:
-                if grille[ligne][colonne-1] == symbole:
-                    if grille[ligne][colonne-2] == symbole:
-                        if grille[ligne][colonne-3] == symbole:
-                            return True
+    compteur = 0
+    for i in range(15):
+        if grille[i][colonne] == symbole:
+                compteur+=1                             
     
-    elif colonne == 13 or colonne == 3:
-        if grille[ligne][colonne] == symbole:
-            if grille[ligne][colonne+1] == symbole:
-                if grille[ligne][colonne+2] == symbole:
-                    if grille[ligne][colonne-1] == symbole:
-                        if grille[ligne][colonne-2] == symbole:
-                            return True
+    if compteur == 5:
+        return True 
     
-    elif colonne == 12 or colonne == 2:
-        if grille[ligne][colonne] == symbole:
-            if grille[ligne][colonne+1] == symbole:
-                if grille[ligne][colonne+2] == symbole:
-                    if grille[ligne][colonne+3] == symbole:
-                        if grille[ligne][colonne-1] == symbole:
-                            return True
-    
-    elif colonne == 11 or colonne == 1:
-        if grille[ligne][colonne] == symbole:
-            if grille[ligne][colonne+1] == symbole:
-                if grille[ligne][colonne+2] == symbole:
-                    if grille[ligne][colonne+3] == symbole:
-                        if grille[ligne][colonne+4] == symbole:
-                            return True
-    
-    else:
-        for i in range(15):  
-            for j in range(1, 15):  
-                if grille[i][j] == symbole:
-                    if grille[i][j+1] == symbole:
-                        if grille[i][j+2] == symbole:
-                            if grille[i][j+3] == symbole:
-                                if grille[i][j+4] == symbole:
-                                    return True
-            
-    #Condition cherchant une potentielle victoire pour un symbole dans une colonne           
-    if ligne == 14 or ligne == 4:
-        if grille[ligne][colonne] == symbole:
-            if grille[ligne-1][colonne] == symbole:
-                if grille[ligne-2][colonne] == symbole:
-                    if grille[ligne-3][colonne] == symbole:
-                        if grille[ligne-4][colonne] == symbole:
-                            return True
-    
-    if ligne == 13 or ligne == 3:
-        if grille[ligne][colonne] == symbole:
-            if grille[ligne+1][colonne] == symbole:
-                if grille[ligne-1][colonne] == symbole:
-                    if grille[ligne-2][colonne] == symbole:
-                        if grille[ligne-3][colonne] == symbole:
-                            return True
-    
-    if ligne == 12 or ligne == 2:
-        if grille[ligne][colonne] == symbole:
-            if grille[ligne+1][colonne] == symbole:
-                if grille[ligne+2][colonne] == symbole:
-                    if grille[ligne-1][colonne] == symbole:
-                        if grille[ligne-2][colonne] == symbole:
-                            return True
-    
-    if ligne == 11 or ligne == 1:
-        if grille[ligne][colonne] == symbole:
-            if grille[ligne+1][colonne] == symbole:
-                if grille[ligne+2][colonne] == symbole:
-                    if grille[ligne+3][colonne] == symbole:
-                        if grille[ligne-1][colonne] == symbole:
-                            return True
-    
-    else:
-        for i in range(15):
-            for j in range(1, 15):
-                if grille[i][j] == symbole:
-                    if grille[i+1][j] == symbole:
-                        if grille[i+2][j] == symbole:
-                            if grille[i+3][j] == symbole:
-                                if grille[i+4][j] == symbole:
-                                    return True
-                                
-                                
     #Condition cherchant une potentielle victoire pour un symbole en diagonale
-    if ligne == 14 and colonne == 15:
-        if grille[ligne][colonne] == symbole:
-            if grille[ligne-1][colonne-1] == symbole:
-                if grille[ligne-2][colonne-2] == symbole:
-                    if grille[ligne-3][colonne-3] == symbole:
-                        if grille[ligne-4][colonne-4] == symbole:
-                            return True
+    compteur = 0
+    for i in range(15):
+        if grille[i][i+1] == symbole:
+            compteur+=1
     
-    if ligne == 13 and colonne == 14:
-        if grille[ligne][colonne] == symbole:
-            if grille[ligne+1][colonne+1] == symbole:
-                if grille[ligne-1][colonne-1] == symbole:
-                    if grille[ligne-2][colonne-2] == symbole:
-                        if grille[ligne-3][colonne-3] == symbole:
-                            return True
-                        
-    if ligne == 12 and colonne == 13:
-        if grille[ligne][colonne] == symbole:
-            if grille[ligne+1][colonne+1] == symbole:
-                if grille[ligne+2][colonne+2] == symbole:
-                    if grille[ligne-1][colonne-1] == symbole:
-                        if grille[ligne-2][colonne-2] == symbole:
-                            return True
-                        
-    if ligne == 11 and colonne == 12:
-        if grille[ligne][colonne] == symbole:
-            if grille[ligne+1][colonne+1] == symbole:
-                if grille[ligne+2][colonne+2] == symbole:
-                    if grille[ligne+3][colonne+3] == symbole:
-                        if grille[ligne-1][colonne-1] == symbole:
-                            return True
+    if compteur == 5:
+        return True    
     
-    if ligne == 10 and colonne == 11:
-        if grille[ligne][colonne] == symbole:
-            if grille[ligne+1][colonne+1] == symbole:
-                if grille[ligne+2][colonne+2] == symbole:
-                    if grille[ligne+3][colonne+3] == symbole:
-                        if grille[ligne+4][colonne+4] == symbole:
-                            return True
-                  
-    if ligne == 14 and colonne == 1:
-        if grille[ligne][colonne] == symbole:
-            if grille[ligne+1][colonne+1] == symbole:
-                if grille[ligne+2][colonne+2] == symbole:
-                    if grille[ligne+3][colonne+3] == symbole:
-                        if grille[ligne+4][colonne+4] == symbole:
-                            return True
     
-    if ligne == 13 and colonne == 2:
-        if grille[ligne][colonne] == symbole:
-            if grille[ligne+1][colonne+1] == symbole:
-                if grille[ligne+2][colonne+2] == symbole:
-                    if grille[ligne+3][colonne+3] == symbole:
-                        if grille[ligne-1][colonne-1] == symbole:
-                            return True
-                        
-    if ligne == 12 and colonne == 3:
-        if grille[ligne][colonne] == symbole:
-            if grille[ligne+1][colonne+1] == symbole:
-                if grille[ligne+2][colonne+2] == symbole:
-                    if grille[ligne-1][colonne-1] == symbole:
-                        if grille[ligne-2][colonne-2] == symbole:
-                            return True
-                        
-    if ligne == 11 and colonne == 4:
-        if grille[ligne][colonne] == symbole:
-            if grille[ligne+1][colonne+1] == symbole:
-                if grille[ligne-1][colonne-1] == symbole:
-                    if grille[ligne-2][colonne-2] == symbole:
-                        if grille[ligne-3][colonne-3] == symbole:
-                            return True
-                        
-    
-    if ligne == 10 and colonne == 5:
-        if grille[ligne][colonne] == symbole:
-            if grille[ligne-1][colonne-1] == symbole:
-                if grille[ligne-2][colonne-2] == symbole:
-                    if grille[ligne-3][colonne-3] == symbole:
-                        if grille[ligne-4][colonne-4] == symbole:
-                            return True
-    
-    if ligne == 0 and colonne == 1:
-        if grille[ligne][colonne] == symbole:
-            if grille[ligne+1][colonne+1] == symbole:
-                if grille[ligne+2][colonne+2] == symbole:
-                    if grille[ligne+3][colonne+3] == symbole:
-                        if grille[ligne+4][colonne+4] == symbole:
-                            return True
-    
-    if ligne == 1 and colonne == 2:
-        if grille[ligne][colonne] == symbole:
-            if grille[ligne+1][colonne+1] == symbole:
-                if grille[ligne+2][colonne+2] == symbole:
-                    if grille[ligne+3][colonne+3] == symbole:
-                        if grille[ligne-1][colonne-1] == symbole:
-                            return True
-                        
-    if ligne == 2 and colonne == 3:
-        if grille[ligne][colonne] == symbole:
-            if grille[ligne+1][colonne+1] == symbole:
-                if grille[ligne+2][colonne+2] == symbole:
-                    if grille[ligne-1][colonne-1] == symbole:
-                        if grille[ligne-2][colonne-2] == symbole:
-                            return True
-    
-    if ligne == 3 and colonne == 4:
-        if grille[ligne][colonne] == symbole:
-            if grille[ligne+1][colonne+1] == symbole:
-                if grille[ligne-1][colonne-1] == symbole:
-                    if grille[ligne-2][colonne-2] == symbole:
-                        if grille[ligne-3][colonne-3] == symbole:
-                            return True
-                        
-    if ligne == 4 and colonne == 5:
-        if grille[ligne][colonne] == symbole:
-            if grille[ligne-1][colonne-1] == symbole:
-                if grille[ligne-2][colonne-2] == symbole:
-                    if grille[ligne-3][colonne-3] == symbole:
-                        if grille[ligne-4][colonne-4] == symbole:
-                            return True
-                        
-    if ligne == 0 and colonne == 15:
-        if grille[ligne][colonne] == symbole:
-            if grille[ligne+1][colonne-1] == symbole:
-                if grille[ligne+2][colonne-2] == symbole:
-                    if grille[ligne+3][colonne-3] == symbole:
-                        if grille[ligne+4][colonne-4] == symbole:
-                            return True
-    
-    if ligne == 1 and colonne == 14:
-        if grille[ligne][colonne] == symbole:
-            if grille[ligne-1][colonne-1] == symbole:
-                if grille[ligne+2][colonne-2] == symbole:
-                    if grille[ligne+3][colonne-3] == symbole:
-                        if grille[ligne+4][colonne-4] == symbole:
-                            return True
-                        
-    if ligne == 2 and colonne == 13:
-        if grille[ligne][colonne] == symbole:
-            if grille[ligne-1][colonne-1] == symbole:
-                if grille[ligne-2][colonne-2] == symbole:
-                    if grille[ligne+1][colonne-1] == symbole:
-                        if grille[ligne+2][colonne-2] == symbole:
-                            return True
-    
-    if ligne == 3 and colonne == 12:
-        if grille[ligne][colonne] == symbole:
-            if grille[ligne+1][colonne+1] == symbole:
-                if grille[ligne-1][colonne-1] == symbole:
-                    if grille[ligne-2][colonne-2] == symbole:
-                        if grille[ligne-3][colonne-3] == symbole:
-                            return True
-                        
-    if ligne == 4 and colonne == 11:
-        if grille[ligne][colonne] == symbole:
-            if grille[ligne-1][colonne+1] == symbole:
-                if grille[ligne-2][colonne+2] == symbole:
-                    if grille[ligne-3][colonne+3] == symbole:
-                        if grille[ligne-4][colonne-1] == symbole:
-                            return True
-                        
-    else:
-        for i in range(15):
-            for j in range(1,15):
-                if grille[i][j] == symbole:
-                    if grille[i][j+1] == symbole:
-                        if grille[i][j+2] == symbole:
-                            if grille[i][j+3] == symbole:
-                                if grille[i][j+4] == symbole:
-                                    return True
-     
-            
     return False
+     
 
 
 
