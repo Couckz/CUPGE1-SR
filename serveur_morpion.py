@@ -132,13 +132,37 @@ def check_victoire(grille, symbole, ligne, colonne):
         return True 
     
     #Condition cherchant une potentielle victoire pour un symbole en diagonale
-    compteur = 0
-    for i in range(15):
-        if grille[i][i+1] == symbole:
-            compteur+=1
+        #Diagonale y=x
+    colonne = int(colonne)
+    ligne = int(ligne)
+    counter=0
+    if grille[ligne][colonne] == symbole:
+        counter+=1
+        if ligne <= 10 or colonne <= 11:
+            for s in range(1,5):
+                if grille[ligne-s][colonne+s] == symbole:
+                    counter+=1
+                if grille[ligne+s][colonne-s] == symbole:
+                    counter+=1
+                
     
-    if compteur == 5:
-        return True    
+    if counter == 5:
+        return True
+
+    #Diagonale y=-x
+    counter=0
+    if grille[ligne][colonne] == symbole:
+        counter+=1
+        if ligne <= 10 or colonne <= 11:
+            for s in range(1,5):
+                if grille[ligne+s][colonne+s] == symbole:
+                    counter+=1
+                if grille[ligne-s][colonne-s] == symbole:
+                    counter+=1
+                
+    
+    if counter == 5:
+        return True   
     
     
     return False
