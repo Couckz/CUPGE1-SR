@@ -138,7 +138,7 @@ def check_victoire(grille, symbole, ligne, colonne):
     counter=0
     if grille[ligne][colonne] == symbole:
         counter+=1
-        if ligne <= 10 or colonne <= 11:
+        if 4 <= ligne <= 10 and 5 <= colonne <= 10:
             for s in range(1,5):
                 if grille[ligne-s][colonne+s] == symbole:
                     counter+=1
@@ -153,7 +153,7 @@ def check_victoire(grille, symbole, ligne, colonne):
     counter=0
     if grille[ligne][colonne] == symbole:
         counter+=1
-        if ligne <= 10 or colonne <= 11:
+        if 4 <= ligne <= 10 and 5 <= colonne <= 10:
             for s in range(1,5):
                 if grille[ligne+s][colonne+s] == symbole:
                     counter+=1
@@ -162,9 +162,24 @@ def check_victoire(grille, symbole, ligne, colonne):
                 
     
     if counter == 5:
-        return True   
+        return True
     
-    
+    #Cas particulier
+    counter=0
+    if grille[ligne][colonne] == symbole:
+        counter+=1
+        for s in range(1,5):
+            try:
+                if grille[ligne-s][colonne+s] == symbole:
+                    counter+=1
+                if grille[ligne-s][colonne-s] == symbole:
+                    counter+=1
+            except Exception:
+                pass
+                
+    if counter == 5:
+        return True
+        
     return False
      
 
