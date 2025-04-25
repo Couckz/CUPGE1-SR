@@ -102,7 +102,7 @@ def check_victoire(grille, symbole, ligne, colonne):
         _Bool_: _Si la fonction renvoie True, cela indique que le joueur courant remporte la partie, si ce n'est pas le cas, la fonction renvoie "False"_
         _integer_: _Dans le cas où la grille est pleine, la fonction renvoie le nombre "16" pour indiquer qu'il n'y a plus aucune case libre dans la grille_
     """
-          
+    #test pour savoir si la grille est pleine      
     counter = 0
     for tab in grille:
         if "." not in tab:
